@@ -43,7 +43,9 @@ class Input extends Component {
     delitem =(index,e) =>{
         const items=Object.assign([],this.state.items);
         items.splice(index,1);
-        this.setState({items:items})
+        Object.assign(this.state.actives, items);
+
+        this.setState({items:items,actives:items})
       }
     Active= (id) =>{
       // console.log(id);
@@ -106,6 +108,7 @@ class Input extends Component {
               <Col md={{ span: 6, offset: 4 }}>
                 <Button onClick={()=>this.All()}>All</Button>
                 <Button onClick={()=>this.Sort()}>Sort Active</Button>
+                <Button onClick={()=>this.All()}>Complete</Button>
               </Col>
             </Row>
             <ul className="justify-content-md-center">
