@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import List from './List'
 import { stringify } from 'querystring';
+import '../App.css';
+import {Container,Row,Col,Button} from 'react-bootstrap'
+
 
 class Input extends Component {
     constructor(props) {
@@ -14,7 +17,8 @@ class Input extends Component {
     }
 
     onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        if(this.state.term!==""){
         this.setState({
         index : this.state.index+1
         });
@@ -23,10 +27,10 @@ class Input extends Component {
                 {
                     id: this.state.index+1,
                     value: this.state.term,
-                    active: false
+                    active: true
                 }
             );
-          this.setState({term: "", items })
+          this.setState({term: "", items })}
       }
     changeHandler= event =>{
         this.setState({term: event.target.value});
@@ -53,22 +57,7 @@ class Input extends Component {
           if(todo.id ===id)
           return {
             ...todo,
-            active:true
-          };
-          else{
-            return todo;
-          }
-        })
-      });
-    };
-
-    Deactive= (id) =>{
-      this.setState({
-        items:this.state.items.map(todo=>{
-          if(todo.id ===id)
-          return {
-            ...todo,
-            active:false
+            active:!todo.active
           };
           else{
             return todo;
@@ -81,7 +70,16 @@ class Input extends Component {
       // Object.assign(this.state.actives, active);
       // let items = [...this.state.items];
     //  this.setState({items: items.filter(item => item.active === true && item.active === false  )});
-      this.setState({items: this.state.actives});
+    
+    let obj= Object.assign([],this.state.items, this.state.actives);
+    // obj=Object.getOwnPropertyNames(obj);
+    this.setState({items: obj}); 
+    console.log("items",obj); 
+    // if(!this.state.actives){
+    //     this.setState({items: this.state.actives});
+    //   console.log("acive", this.state.actives);
+    //   }
+
    }
 
 
@@ -97,14 +95,20 @@ class Input extends Component {
     }
     render() { 
         return ( 
-            <>
-            <form className="App" onSubmit={this.onSubmit}>
-                <input type="text"  value= {this.state.term} onChange={this.changeHandler} />
-                <button >submit</button>
-            </form>
-            <button onClick={()=>this.All()}>All</button>
-            <button onClick={()=>this.Sort()}>Sort Active</button>
-            <ul >
+            <Container>
+              <Row className="justify-content-md-center">
+              <Col md={{ span: 6}}>
+                <form className="App" onSubmit={this.onSubmit}>
+                    <input type="text"  value= {this.state.term} onChange={this.changeHandler} />
+                    <button variant="secondary">submit</button>
+                </form>
+              </Col>
+              <Col md={{ span: 6, offset: 4 }}>
+                <Button onClick={()=>this.All()}>All</Button>
+                <Button onClick={()=>this.Sort()}>Sort Active</Button>
+              </Col>
+            </Row>
+            <ul className="justify-content-md-center">
               {
                 this.state.items.map((items,index)=>{
                   return(
@@ -118,7 +122,7 @@ class Input extends Component {
                 })
               }
             </ul>
-            </>
+            </Container>
          );
     }
 }
