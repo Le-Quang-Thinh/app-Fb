@@ -1,12 +1,13 @@
 
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Input from './component/input';
+import List from './List'
+import {Provider} from 'react-redux'
+import store from './store';
 function App() {
   return (
-    <>
-    <Input></Input>
-    </>
+    <Provider store={store}>
+       <List></List>
+    </Provider>
   );
 }
 export default App;
