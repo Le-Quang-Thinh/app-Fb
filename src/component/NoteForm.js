@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-
+import { addNote } from "../action/action";
 
 class NoteForm extends Component {
     handleSubmit=(e)=>{
@@ -10,14 +10,16 @@ class NoteForm extends Component {
         // this.props.handleAdd(this.refs.title.value,this.refs.content.value);
        
         // this.toggle();
-        let {dispatch}= this.props;
-        dispatch({
-            type:'ADDING',
-            title:this.title.value,
-            content:this.content.value
-        })
+        // let {dispatch}= this.props;
+        // dispatch({
+        //     type:'ADDING',
+        //     title:this.title.value,
+        //     content:this.content.value
+        // })
+        this.props.addNote(this.title.value, this.content.value);
         this.title.value = ''
         this.content.value =' ';
+        
     }
 
     render() {
@@ -52,6 +54,9 @@ class NoteForm extends Component {
          );
     }
 }
- 
-export default connect()(NoteForm);
+const mapDispatchToProps = {
+  addNote: addNote
+};
+
+export default connect(null,mapDispatchToProps)(NoteForm);
 

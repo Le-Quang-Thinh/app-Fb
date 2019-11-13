@@ -1,8 +1,8 @@
 
 import React, { Component } from "react";
-import List from './List'
+import List from './component/List'
 import {Provider} from 'react-redux'
-import store from './store';
+import store from './store/store';
 function App() {
   return (
     <Provider store={store}>
