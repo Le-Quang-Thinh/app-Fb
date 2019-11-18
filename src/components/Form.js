@@ -6,10 +6,10 @@ class Form extends Component {
         this.state = {
             todotext: '',
         }
-        this.onChangeTodoText = this.onChangeTodoText.bind(this)
     }
 
-    onChangeTodoText(e){
+    onChangeTodoText= (e)=>{
+        e.preventDefault();
         this.setState({
             todotext: e.target.value
         })
