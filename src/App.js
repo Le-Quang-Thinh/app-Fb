@@ -1,22 +1,43 @@
 import React, { Component } from 'react'
-import CreateTodo from './containers/CreateTodo'
-import Table from './containers/Table'
+import Buttons from "./components/Button";
+import Volums from "./components/Volums";
+import Toggle from "./components/Toggle";
+import Input from "./components/ShowLetter";
+import {ButtonToolbar,Button,Container,Row} from 'react-bootstrap'
+
 
 class App extends Component {
-  render() {
+  render () {
+      console.log('asdsat',this.props.TToggle);
+      console.log('volums',this.props.volums);
+      console.log('Meesage',this.props.Messages);
+
     return (
-      <div className="App">
-        <div className="container" style={{ marginTop: "80px"}} >
-          <div className="row">
-            <div className="col-lg-10 offset-lg-2 col-md-10 col-sm-12 col-xs-12">
-              <CreateTodo />
-            </div>
-            <Table />
-          </div>
-        </div>
+      <div>
+        <Toggle toggles={this.props} onHandleClick={() =>this.props.toggle()}></Toggle>
+        <Volums volums={this.props} handleChangeVolums={this.props.Volumn}></Volums>
+        <Input Massage={this.props.Messages}></Input>
+        <Button onClick={() => this.props.fetch_()}>Show</Button>
+          {this.props.loading 
+            ? <p>Loading...</p> 
+            : this.props.error
+                ? <p>Error, try again</p>
+                :<>
+                  <ButtonToolbar >
+                  <Container style={{width: "30%"}}>
+                  <Row>{this.props.TToggle ? this.props.data.map((item,index)=>(
+                        <Buttons key={index} data={item} onHandlePlay={this.props.Play} Volumns={this.props.volums}></Buttons>
+                          ))
+                          : <p>Error,notthing data</p>
+                      }
+                      </Row>
+                    </Container>
+                    </ButtonToolbar>
+                  
+                  </>
+          }
       </div>
-    );
+    )
   }
 }
-
 export default App;
