@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
         deleteTodo,
         toggleTodo,
-        setVisibilityFilter
+        setVisibilityFilter,
+        modalOpen
       } from "../actions/actionCreator";
 import { bindActionCreators } from "redux";
 
@@ -35,7 +36,8 @@ const mapDispatchToProps = dispatch => {
     {
       deleteTodo,
       toggleTodo,
-      setVisibilityFilter
+      setVisibilityFilter,
+      modalOpen
     },
     dispatch
   );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {} from "../actions/actionsTypes";
+import Example from './Accordion'
 class Tables extends Component {
     render() { 
         return ( 
@@ -17,13 +18,15 @@ class Tables extends Component {
                   </thead>
                   <tbody>
                     {this.props.todos.todos.map(todo => (
+                      
                       <tr key={todo.id}>
                         <td
                           style={{
-                            textDecoration: todo.completed ? "line-through" : "none"
+                            textDecoration: todo.completed ? "line-through" : "none",
+                            width:"70%"
                           }}
                         >
-                          {todo.text} {todo.completed === true ? "(completed)" : ""}
+                        <Example todo={todo} modal_Open={this.props.todos.modalOpen}></Example>
                         </td>
                         <td>
                           <span

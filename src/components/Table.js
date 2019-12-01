@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Tables from './ListTable';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../actions/actionsTypes";
+import Button from 'react-bootstrap/Button'
 
 
 class List extends Component {
   render() {
     return (
       <div className="col-lg-10 offset-lg-1 col-md-10 col-sm-12 col-xs-12">
+      <Button variant="primary">
+          Show
+        </Button>
         <nav style={{ marginTop: "60px" }}>
           <ol className="breadcrumb">
             <li
@@ -29,7 +33,7 @@ class List extends Component {
             </li>
           </ol>
         </nav>
-        <Tables todos={this.props}></Tables>
+        <Tables todos={this.props} ></Tables>
       </div>
     );
   }
