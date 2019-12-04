@@ -6,7 +6,9 @@ import {
         deleteTodo,
         toggleTodo,
         setVisibilityFilter,
-        modalOpen
+        modalOpen,
+        pauseOrStatrTime,
+        Tick
       } from "../actions/actionCreator";
 import { bindActionCreators } from "redux";
 
@@ -37,7 +39,9 @@ const mapDispatchToProps = dispatch => {
       deleteTodo,
       toggleTodo,
       setVisibilityFilter,
-      modalOpen
+      modalOpen,
+      pauseOrStatrTime,
+      Tick
     },
     dispatch
   );

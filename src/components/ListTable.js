@@ -26,7 +26,7 @@ class Tables extends Component {
                             width:"70%"
                           }}
                         >
-                        <Example todo={todo} modal_Open={this.props.todos.modalOpen}></Example>
+                        <Example todo={todo} modal_Open={this.props.todos.modalOpen}  StartTick={this.props.todos.Tick} StartCountDown={this.props.todos.pauseOrStatrTime}></Example>
                         </td>
                         <td>
                           <span
@@ -38,11 +38,11 @@ class Tables extends Component {
                               marginRight: "20px"
                             }}
                           />
-                          <span
+                          {/* <span
                             className="fas fa-check-circle"
                             onClick={() => this.props.todos.toggleTodo(todo.id)}
                             style={{ color: "white", fontSize: "20pt" }}
-                          />
+                          /> */}
                         </td>
                       </tr>
                     ))}
