@@ -37,7 +37,7 @@ const TodoReducer = (state=INITIAL_DATA, action) => {
                         (todo.id === action.id && todo.stop === false) 
                             ? (todo.second > 0) 
                                 ? {...todo,second:todo.second-1}
-                                : (todo.second ===0)  
+                                : (todo.second ===0 || todo.second !== "")  
                                     ? ( parseInt(todo.minute) === 0) 
                                         ? {...todo,stop:true,completed:true} 
                                         : {...todo,second: 59 ,minute:  parseInt(todo.minute)-1}

@@ -8,9 +8,6 @@ class List extends Component {
   render() {
     return (
       <div className="col-lg-10 offset-lg-1 col-md-10 col-sm-12 col-xs-12">
-      <Button variant="primary">
-          Show
-        </Button>
         <nav style={{ marginTop: "60px" }}>
           <ol className="breadcrumb">
             <li

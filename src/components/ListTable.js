@@ -12,15 +12,14 @@ class Tables extends Component {
                 >
                   <thead>
                     <tr>
-                      <th scope="col">Todos</th>
+                      <th scope="col">Pomodoro</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.props.todos.todos.map(todo => (
-                      
                       <tr key={todo.id}>
-                        <td
+                        <td 
                           style={{
                             textDecoration: todo.completed ? "line-through" : "none",
                             width:"70%"
@@ -54,7 +53,7 @@ class Tables extends Component {
                   className="col-lg-10 col-md-10 col-xs-12 col-sm-12 offset-lg-1"
                 >
                   <div className="alert alert-danger" role="alert">
-                    Todo List is empty or Filter results show no results
+                    Pomodoro is empty or Filter results show no results
                   </div>
                 </div>
               )}{" "}

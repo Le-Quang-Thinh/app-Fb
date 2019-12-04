@@ -1,11 +1,10 @@
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import React,{Component}  from 'react';
+import React,{PureComponent}  from 'react';
 import ModalClock from './ModalClock';
 
-
-class Example extends Component {
+class Example extends PureComponent  {
   constructor(props) {
     super(props);
     this.state = { intervalId: 0 }
@@ -30,26 +29,39 @@ class Example extends Component {
     return (
       <>
       {/* <ModalClock onHandleClick={() =>this.props.modal_Open(todo.id)} onHandleTick={()=>this.props.StartTick(todo.id)} onHandleStart={() =>this.props.StartCountDown(todo.id)} modal={todo.modal}  minute={todo.minute} second={todo.second} pause={todo.stop} stops={todo.stop} text={todo.text}></ModalClock> */}
-        <Accordion  style={{ color: "red" }} >
+        <Accordion  style={{ color: "red",background: "red" }} >
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey={todo.id}  >
             <p className="text-success">{todo.text} </p>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey={todo.id}>
-            <Card.Body>
-                    <Card.Title className="text-info">TimeStart {todo.minute}:{todo.second }</Card.Title>
-                    <Card.Text  className="text-warning">{todo.completed === true ? "(completed)" : ""}</Card.Text>
-               <Button variant="secondary"  onClick={(todo.stop )? () =>this.props.StartCountDown(todo.id) : ()=>this.props.StartTick(todo.id)}>
-                Start/Pause
-                </Button>
-                <Button variant="primary"  onClick={() => this.tick(todo.id,todo.stop)}>
-                  Start
-                </Button>
-                <Button variant="primary"  onClick={() =>this.props.modal_Open(todo.id)}>
-                  Open Modal
-                </Button>
-            </Card.Body>
-          </Accordion.Collapse>
+          { (todo.second < 5 && todo.minute < 1 ) 
+          
+            ? <Accordion.Collapse eventKey={todo.id} style={{background: "red"}}> 
+                <Card.Body>
+                        <Card.Title className="text-info">TimeStart {todo.minute}:{todo.second }</Card.Title>
+                        <Card.Text  className="text-warning">{todo.completed === true ? "(completed)" : ""}</Card.Text>
+                    <Button variant="secondary"  onClick={() => this.tick(todo.id,todo.stop)}>
+                      {(todo.stop) ? "Start" : "Pause"}
+                    </Button>
+                    {/* <Button variant="primary"  onClick={() =>this.props.modal_Open(todo.id)}>
+                      Open Modal
+                    </Button> */}
+                </Card.Body>
+               </Accordion.Collapse>
+            : <Accordion.Collapse eventKey={todo.id} style={{ background: "white" }}> 
+                <Card.Body>
+                        <Card.Title className="text-info">TimeStart {todo.minute}:{todo.second }</Card.Title>
+                        <Card.Text  className="text-warning">{todo.completed === true ? "(completed)" : ""}</Card.Text>
+                    <Button variant="secondary"  onClick={() => this.tick(todo.id,todo.stop)}>
+                      {(todo.stop) ? "Start" : "Pause"}
+                    </Button>
+                    {/* <Button variant="primary"  onClick={() =>this.props.modal_Open(todo.id)}>
+                      Open Modal
+                    </Button> */}
+                </Card.Body>
+              </Accordion.Collapse>
+        }
+         
         </Card>
       </Accordion>
       </>

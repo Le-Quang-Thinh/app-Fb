@@ -21,7 +21,7 @@ function Modals() {
           </Modal.Header>
           <Modal.Body> 
             <div className="col-lg-10 offset-lg-2 col-md-10 col-sm-12 col-xs-12">
-              <CreateTodo />
+              <CreateTodo handleClick={handleClose}/>
             </div></Modal.Body>
           {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
