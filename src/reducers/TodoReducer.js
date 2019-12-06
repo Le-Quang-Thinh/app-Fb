@@ -1,8 +1,17 @@
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO,PAUSE_START_TIME,OPEN_MODAL,TICK} from '../actions/actionsTypes'
+import ref from '../firebaseConfig';
 
 const INITIAL_DATA = []
-
+// componentDidMount() {
+//     this.getUserData();
+//   }
+ref.on('child_added', snapshot => {
+    const states = snapshot.val();
+    console.log(states);
+    INITIAL_DATA.push(states);
+  });
 const TodoReducer = (state=INITIAL_DATA, action) => {
+
     switch (action.type){
         case ADD_TODO:
             return [
@@ -26,6 +35,14 @@ const TodoReducer = (state=INITIAL_DATA, action) => {
          )
         case REMOVE_TODO:
         const numIndex = parseInt(action.id)
+        ref.orderByChild('id').equalTo(action.id).on('child_added', (snapshot) => {
+            snapshot.ref.remove()
+        ref.on('child_added', snapshot => {
+            const states = snapshot.val();
+            console.log(states);
+            INITIAL_DATA.push(states);
+            });
+       });
              return state.filter(todo => todo.id !== numIndex);
         case PAUSE_START_TIME :
              return state.map(todo =>
@@ -38,7 +55,7 @@ const TodoReducer = (state=INITIAL_DATA, action) => {
                             ? (todo.second > 0) 
                                 ? {...todo,second:todo.second-1}
                                 : (todo.second ===0 || todo.second !== "")  
-                                    ? ( parseInt(todo.minute) === 0) 
+                                    ? ( parseInt(todo.minute) <= 0 || todo.minute==="") 
                                         ? {...todo,stop:true,completed:true} 
                                         : {...todo,second: 59 ,minute:  parseInt(todo.minute)-1}
                                     : {...todo,second: 59}

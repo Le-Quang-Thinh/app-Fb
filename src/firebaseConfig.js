@@ -1,3 +1,4 @@
+import Firebase from 'firebase';
 const firebaseConfig = {
     apiKey: "AIzaSyAYrOxLGVaO-p4K-K5J2hFI7e0NiuF_QEg",
     authDomain: "message-a9431.firebaseapp.com",
@@ -8,4 +9,7 @@ const firebaseConfig = {
     appId: "1:302388487347:web:a5cab4dfb5c6f76de1fcc6"
   };
 
-export default firebaseConfig;
+  
+  Firebase.initializeApp(firebaseConfig);
+  const ref = Firebase.database().ref('/').child('developers');
+export default ref;
